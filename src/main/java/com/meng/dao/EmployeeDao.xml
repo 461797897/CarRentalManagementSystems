@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  配置为包名+接口名  实现 代理模式
+  接口中 每一个方法  都与  标签的id对应
+-->
+<mapper namespace="com.meng.dao.EmployeeDao">
+    <select id="queryEmployeeAll" resultType="Employee">
+        select * from employee
+        <where>
+            <if test="employees!=null and employees!=''">
+                pname=#{pname} and age=#{age} and idCard=#{idCard}
+                and phone=#{phone} and salary =#{salary} and mail=#{mail}
+            </if>
+            <if test="sex!=null and sex!=''">
+                and sex=#{sex}
+            </if>
+        </where>
+    </select>
+</mapper>
